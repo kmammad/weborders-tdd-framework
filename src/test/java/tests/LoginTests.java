@@ -6,63 +6,54 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utilities.ConfigReader;
+import utilities.Driver;
 
+import java.io.*;
 import java.time.Duration;
+import java.util.Properties;
 
-public class LoginTests {
+public class LoginTests extends TestBase {
 
-    public WebDriver driver;
-
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        driver.quit();
-    }
-
-    @Test
+    @Test (groups = "smoke")
     public void testValidCredentials() {
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester", Keys.TAB,
-                "test", Keys.ENTER);
-        Assert.assertEquals(driver.getTitle(), "Web Orders");
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys(ConfigReader.getProperty("username"), Keys.TAB,
+                ConfigReader.getProperty("password"), Keys.ENTER);
+        Assert.assertEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
-    @Test
-    public void testInvalidCredentials() {
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester", Keys.TAB,
+    @Test (groups = "smoke")
+    public void testInvalidCredentials() throws IOException {
+
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys(ConfigReader.getProperty("username"), Keys.TAB,
                 "invalid", Keys.ENTER);
-        Assert.assertNotEquals(driver.getTitle(), "Web Orders");
+        Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
     @Test
     public void testInvalidCredentialsNoUsername() {
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("", Keys.TAB,
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys("", Keys.TAB,
                 "invalid", Keys.ENTER);
-        Assert.assertNotEquals(driver.getTitle(), "Web Orders");
+        Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
     @Test
     public void testInvalidCredentialsNoPassword() {
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("cscs", Keys.TAB,
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys("cscs", Keys.TAB,
                 "", Keys.ENTER);
-        Assert.assertNotEquals(driver.getTitle(), "Web Orders");
+        Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
     @Test
     public void testInvalidCredentialsNoCredentials() {
-        driver.get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-        driver.findElement(By.id("ctl00_MainContent_username")).sendKeys("", Keys.TAB,
+        Driver.getDriver().get(ConfigReader.getProperty("url"));
+        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys("", Keys.TAB,
                 "", Keys.ENTER);
-        Assert.assertNotEquals(driver.getTitle(), "Web Orders");
+        Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
 }
