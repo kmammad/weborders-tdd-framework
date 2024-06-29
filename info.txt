@@ -9,4 +9,6 @@ TDD Framework Building Steps:
         .DS_Store
    #git rm -r --cached <folder or file name> to remove unwanted folder or files retroactively
 4. Create the package structure (pages - page object model classes/repositories)
+5. Add your test cases
+6. Add an xml files for running tests
 5. Add and configure the Base class (framework test base class)
