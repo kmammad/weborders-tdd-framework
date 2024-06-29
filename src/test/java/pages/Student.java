@@ -11,6 +11,7 @@ public class Student {
 
     private Student(){}
 
+
     public static Student getStudent(){
         if (student == null){
             student = new Student();
