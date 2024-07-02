@@ -6,6 +6,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utilities.Driver;
+import utilities.SeleniumUtils;
 
 import java.time.Duration;
 
@@ -25,6 +26,7 @@ public class TestBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        SeleniumUtils.takeScreenshot("failure.png");
         Driver.quitDriver();
     }
 }
