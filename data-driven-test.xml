@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Smoke Test Suite">
+
+    <test name="UI Smoke Tests">
+
+        <classes>
+            <class name="tests.PlaceOrderTests">
+                <methods>
+                    <include name="placeOrderDataDrivenTest"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+</suite>

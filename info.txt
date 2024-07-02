@@ -1,5 +1,13 @@
-TDD Framework Building Steps:
 
+TDD (Test Driven Development) Framework
+
+Do not confuse TDD with DDT -> DDT (Data-Driven Testing) - running the same tests with different data inputs. An example
+is Data Provider
+
+TDD is a style of framework, test written with test annotation with TestNG or JUnit. Implement a feature based on tests
+
+
+TDD Framework Building Steps:
 1. Create a maven project
 2. Add the necessary dependencies
 3. Add project specific .gitignore file BEFORE tracking the project with git (git in it)
@@ -13,4 +21,32 @@ TDD Framework Building Steps:
 6. Add an xml files for running tests (regression, smoke)
 7. Add and configure the Base class (framework test base class), inc config property file
 8. Add properties file and ConfigReader Utility class to read from the file
+
+TDD TestNG Framework components (tools used):
+1) Java (version 17) -> writing framework code (test cases, Selenium library uses Java behind the scene)
+2) Maven (4.0.0) -> create/manage framework structure, dependencies. Execute tests thru command line (CICD tools, cloud)
+3) Selenium(4.22.0) WebDriver -> creating UI tests(scripts)
+4) TestNG (7.10.2) -> run the tests, configure and organize test cases via an xml file and annotations
+5) Faker -> mock data generation
+6) Commons IO -> IO (input/output) operations
+7) Intellij -> develop, run, test the framework code, fix the errors, speed up the development process.
+8) Git/Github =-> version control, code collaboration, remote repository (github owned by Microsoft), other similar to github is bitbucket
+9) .gitignore -> ignore unnecessary files (auto generated config files) that are not important for the framework code to prevent merge conflicts
+10) testng xml file -> configure/organize/group our tests in certain manner
+11) .properties file -> stores project specific global data/variables
+12) utility classes (ConfigReader, Driver, SeleniumUtils) -> store commonly used methods
+13) Framework Base Class -> to store common setup and teardown operations(methods) for all test cases
+14) Singleton -> design pattern applied to Driver class to ensure single WebDriver instance during test execution.
+
+
+
+
+
+
+
+
+
+
+
+
 
