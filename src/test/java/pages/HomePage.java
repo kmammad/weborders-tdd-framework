@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 @Data
 public class HomePage {
 
@@ -21,5 +23,21 @@ public class HomePage {
     public void clickOnLink(String textOfTheLink){
         Driver.getDriver().findElement(By.linkText(textOfTheLink)).click();
     }
+
+    @FindBy(id = "ctl00_MainContent_btnCheckAll")
+    private WebElement checkAllButton;
+
+    @FindBy(id = "ctl00_MainContent_btnUncheckAll")
+    private WebElement uncheckAllButton;
+
+    @FindBy(id = "ctl00_MainContent_btnDelete")
+    private WebElement deleteSelectedButton;
+
+    @FindBy(xpath = "//input[@type='checkbox']")
+    private List<WebElement> allCheckboxes;
+
+
+
+
 
 }

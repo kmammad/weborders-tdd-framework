@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
@@ -26,10 +27,9 @@ public class AllOrdersTests extends TestBase{
         Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
         new LoginPage().login();
 
-
-        Assert.assertTrue(Driver.getDriver().findElement(By.id("ctl00_MainContent_btnCheckAll")).isDisplayed());
-        Assert.assertTrue(Driver.getDriver().findElement(By.id("ctl00_MainContent_btnUncheckAll")).isDisplayed());
-        Assert.assertTrue(Driver.getDriver().findElement(By.id("ctl00_MainContent_btnDelete")).isDisplayed());
+        Assert.assertTrue(new HomePage().getCheckAllButton().isDisplayed());
+        Assert.assertTrue(new HomePage().getUncheckAllButton().isDisplayed());
+        Assert.assertTrue(new HomePage().getDeleteSelectedButton().isDisplayed());
     }
 
     @Test (groups = "smoke")
@@ -38,10 +38,9 @@ public class AllOrdersTests extends TestBase{
         Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
         new LoginPage().login();
 
-        Driver.getDriver().findElement(By.id("ctl00_MainContent_btnCheckAll")).click();
+        new HomePage().getCheckAllButton().click();
 
-       List<WebElement> checkboxes = Driver.getDriver().findElements(By.xpath("//input[@type='checkbox']"));
-        for (WebElement checkbox : checkboxes) {
+        for (WebElement checkbox : new HomePage().getAllCheckboxes()) {
             Assert.assertTrue(checkbox.isSelected());
         }
     }
