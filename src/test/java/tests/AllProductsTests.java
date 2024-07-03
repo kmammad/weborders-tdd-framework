@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.extern.java.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -26,7 +27,6 @@ public class AllProductsTests extends TestBase {
         new HomePage().clickOnLink("View all products");
 
         List<String> actualHeadersText = new AllProductsPage().extractHeadersText();
-
 //        List<WebElement> headers = new AllProductsPage().getHeaders();
 //        List<String> headersText = SeleniumUtils.getElementsText(headers);
 
@@ -35,17 +35,13 @@ public class AllProductsTests extends TestBase {
 
     @Test
     public void verifyProductNames() {
-        Driver.getDriver().get(ConfigReader.getProperty("url"));
-        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).
-                sendKeys(ConfigReader.getProperty("username"), Keys.TAB,
-                        ConfigReader.getProperty("password"), Keys.ENTER);
+        Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
+        new LoginPage().login();
 
-        Driver.getDriver().findElement(By.linkText("View all products")).click();
+        new HomePage().clickOnLink("View all products");
 
-        List<WebElement> elements = Driver.getDriver().findElements(By.xpath("//table[@class='ProductsTable']//tr//td[1]"));
-        List<String> elementsText = new ArrayList<>();
-        elements.forEach( webElement -> elementsText.add(webElement.getText()));
+        List<String> actualFirstColumnText = new AllProductsPage().extractFirstColumnText();
 
-        Assert.assertEquals(elementsText, List.of("MyMoney", "FamilyAlbum", "ScreenSaver"));
+        Assert.assertEquals(actualFirstColumnText, List.of("MyMoney", "FamilyAlbum", "ScreenSaver"));
     }
 }

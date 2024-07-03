@@ -40,6 +40,7 @@ TDD TestNG Framework components (tools used):
 12) utility classes (ConfigReader, Driver, SeleniumUtils) -> store commonly used methods
 13) Framework Base Class -> to store common setup and teardown operations(methods) for all test cases
 14) Singleton -> design pattern applied to Driver class to ensure single WebDriver instance during test execution.
+15) Lombok dependency with annotations @Data, @AllArgsConstructor, @NoArgsConstructor, for POJO getters etc
 
 
 

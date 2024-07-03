@@ -18,8 +18,9 @@ public class AllProductsPage {
     public AllProductsPage(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
+    
   @FindBy (xpath = "//table[@class='ProductsTable']//th")
-  private List<WebElement> elements;
+  private List<WebElement> headerElements;
 //  private List<WebElement> elements =
 //          Driver.getDriver().findElements(By.xpath("//table[@class='ProductsTable']//th"));
 
@@ -28,8 +29,16 @@ public class AllProductsPage {
 //        return elements;
 //    }
 
+    @FindBy (xpath = "//table[@class='ProductsTable']//tr//td[1]")
+    private List<WebElement> firstColumnElements;
+
+
     public List<String> extractHeadersText(){
-        return SeleniumUtils.getElementsText(elements);
+        return SeleniumUtils.getElementsText(headerElements);
+    }
+
+    public List<String> extractFirstColumnText(){
+        return SeleniumUtils.getElementsText(firstColumnElements);
     }
 
 

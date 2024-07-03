@@ -10,8 +10,10 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.FrameworkConstants;
 
 import java.time.Duration;
 import java.util.List;
@@ -21,10 +23,9 @@ public class AllOrdersTests extends TestBase{
     @Test
     public void testButtons() {
 
-        Driver.getDriver().get(ConfigReader.getProperty("url"));
-        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).
-                sendKeys(ConfigReader.getProperty("username"), Keys.TAB,
-                        ConfigReader.getProperty("password"), Keys.ENTER);
+        Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
+        new LoginPage().login();
+
 
         Assert.assertTrue(Driver.getDriver().findElement(By.id("ctl00_MainContent_btnCheckAll")).isDisplayed());
         Assert.assertTrue(Driver.getDriver().findElement(By.id("ctl00_MainContent_btnUncheckAll")).isDisplayed());
@@ -33,10 +34,9 @@ public class AllOrdersTests extends TestBase{
 
     @Test (groups = "smoke")
     public void testCheckAll() {
-        Driver.getDriver().get(ConfigReader.getProperty("url"));
-        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys
-                (ConfigReader.getProperty("username"), Keys.TAB,
-                        ConfigReader.getProperty("password"), Keys.ENTER);
+
+        Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
+        new LoginPage().login();
 
         Driver.getDriver().findElement(By.id("ctl00_MainContent_btnCheckAll")).click();
 

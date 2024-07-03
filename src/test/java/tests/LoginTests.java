@@ -20,7 +20,7 @@ public class LoginTests extends TestBase {
     public void testValidCredentials() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
         LoginPage loginPage = new LoginPage();
-        loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
+        loginPage.login();
         Assert.assertEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
@@ -35,24 +35,21 @@ public class LoginTests extends TestBase {
     @Test
     public void testInvalidCredentialsNoUsername() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
-        new LoginPage().getUsernameField().sendKeys("", Keys.TAB,
-                "invalid", Keys.ENTER);
+        new LoginPage().login("", ConfigReader.getProperty("password"));
         Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
     @Test
     public void testInvalidCredentialsNoPassword() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
-        new LoginPage().getUsernameField().sendKeys("cscs", Keys.TAB,
-                "", Keys.ENTER);
+        new LoginPage().login(ConfigReader.getProperty("username"), "");
         Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
     @Test
     public void testInvalidCredentialsNoCredentials() {
         Driver.getDriver().get(ConfigReader.getProperty("url"));
-        new LoginPage().getUsernameField().sendKeys("", Keys.TAB,
-                "", Keys.ENTER);
+        new LoginPage().login("", "");
         Assert.assertNotEquals(Driver.getDriver().getTitle(), "Web Orders");
     }
 
