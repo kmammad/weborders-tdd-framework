@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class LombokDemo {
 
     //POJO -> PLain Old Java Object
 
@@ -20,8 +20,8 @@ public class Student {
 
     public static void main(String[] args) {
 
-        Student student = new Student("Bob", 34, LocalDate.now());
-        Student student2 = new Student();
+        LombokDemo student = new LombokDemo("Bob", 34, LocalDate.now());
+        LombokDemo student2 = new LombokDemo();
 
         System.out.println(student.toString());
     }
