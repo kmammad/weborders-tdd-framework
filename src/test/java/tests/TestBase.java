@@ -26,7 +26,7 @@ public class TestBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SeleniumUtils.takeScreenshot("failure.png");
+      //  SeleniumUtils.takeScreenshot("failure.png");
         Driver.quitDriver();
     }
 }

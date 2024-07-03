@@ -1,21 +1,29 @@
 package pages;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
-    //Singleton pattern has 3 components:
-    // private static fields
-    // private constructor
-    // public getter method that returns the object of the class after a null check
+    //POJO -> PLain Old Java Object
 
-    private static Student student;
-
-    private Student(){}
+    private String name;
+    private int age;
+    private LocalDate dateOfBirth;
 
 
-    public static Student getStudent(){
-        if (student == null){
-            student = new Student();
-        }
-        return student;
+    public static void main(String[] args) {
+
+        Student student = new Student("Bob", 34, LocalDate.now());
+        Student student2 = new Student();
+
+        System.out.println(student.toString());
     }
+
 }
