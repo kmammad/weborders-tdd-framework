@@ -20,7 +20,7 @@ import java.util.List;
 public class AllProductsTests extends TestBase {
 
     @Test (groups = "smoke")
-    public void verifyColumns() throws InterruptedException {
+    public void verifyColumns() {
         Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
         new LoginPage().login();
 

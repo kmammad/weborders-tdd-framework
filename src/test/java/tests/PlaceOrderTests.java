@@ -5,9 +5,11 @@ import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.LoginPage;
 import utilities.CSVReader;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.FrameworkConstants;
 
 public class PlaceOrderTests extends TestBase {
 
@@ -18,9 +20,10 @@ public class PlaceOrderTests extends TestBase {
                                          String state,
                                          String zip,
                                          String card){
-        Driver.getDriver().get("http://secure.smartbearsoftware.com/samples/TestComplete12/WebOrders/Login.aspx");
-        Driver.getDriver().findElement(By.id("ctl00_MainContent_username")).sendKeys("Tester", Keys.TAB,
-                        "test", Keys.ENTER);
+
+        Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
+
+        new LoginPage().login();
 
         Driver.getDriver().findElement(By.linkText("Order")).click();
 
