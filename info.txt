@@ -39,8 +39,18 @@ TDD TestNG Framework components (tools used):
 11) .properties file -> stores project specific global data/variables
 12) utility classes (ConfigReader, Driver, SeleniumUtils) -> store commonly used methods
 13) Framework Base Class -> to store common setup and teardown operations(methods) for all test cases
-14) Singleton -> design pattern applied to Driver class to ensure single WebDriver instance during test execution.
-15) Lombok dependency with annotations @Data, @AllArgsConstructor, @NoArgsConstructor, for POJO getters etc
+14) Lombok dependency with annotations @Data, @AllArgsConstructor, @NoArgsConstructor, generates boilerplate code
+(toString, getter/setter, hashcode and equals) for our page classes
+
+Design Pattern used in this Framework:
+1) Singleton -> design pattern applied to Driver class to ensure single WebDriver instance during test execution.
+2) Page Object Model -> design pattern used in UI test frameworks to reduce repeated code and improve maintainability
+    Steps:
+    - create a class for each page of the app, and add the webelements there with @FindBY annotations
+    - use the page class in your test before creating the object of the class and accessing the webelements
+    through getters or using methods that interact with those elements.
+3) Page Factory - a technique of implementing Page Object Model in a more readable and efficient way: we use @FindBy
+ annotations for Webelements and use PageFactory.initElements(Driver.getDriver(), this) in the constructor of the class
 
 
 
