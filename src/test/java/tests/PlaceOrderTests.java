@@ -1,17 +1,47 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.LoginPage;
+import pages.PlaceOrderPage;
 import utilities.CSVReader;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.FrameworkConstants;
 
 public class PlaceOrderTests extends TestBase {
+
+    @Test (dataProvider = "customerData")
+    public void placeOrderDataDrivenTestPageObjectModel(String fullName,
+                                         String street,
+                                         String city,
+                                         String state,
+                                         String zip,
+                                         String card) throws InterruptedException {
+
+        Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
+
+        new LoginPage().login();
+
+        new HomePage().clickOnLink("Order");
+
+        new PlaceOrderPage().enterQuantity(new Faker().number().numberBetween(1, 99));
+
+        new PlaceOrderPage().enterNameAndAddress(fullName, street, city, state, zip);
+
+        new PlaceOrderPage().enterPaymentInfo(card);
+
+      //  Thread.sleep(7000);
+
+        new PlaceOrderPage().clickProcessButton();
+
+        Assert.assertTrue(new PlaceOrderPage().getSuccessMessage().isDisplayed());
+    }
 
     @Test (dataProvider = "customerData")
     public void placeOrderDataDrivenTest(String fullName,
@@ -35,6 +65,7 @@ public class PlaceOrderTests extends TestBase {
         Driver.getDriver().findElement(By.id("ctl00_MainContent_fmwOrder_TextBox3")).sendKeys(city);
         Driver.getDriver().findElement(By.id("ctl00_MainContent_fmwOrder_TextBox4")).sendKeys(state);
         Driver.getDriver().findElement(By.id("ctl00_MainContent_fmwOrder_TextBox5")).sendKeys(zip);
+
         Driver.getDriver().findElement(By.id("ctl00_MainContent_fmwOrder_cardList_1")).click();
         Driver.getDriver().findElement(By.id("ctl00_MainContent_fmwOrder_TextBox6")).sendKeys(card);
         Driver.getDriver().findElement(By.id("ctl00_MainContent_fmwOrder_TextBox1")).sendKeys("12/27");

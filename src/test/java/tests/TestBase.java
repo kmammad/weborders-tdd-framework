@@ -25,7 +25,7 @@ public class TestBase {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() {
+    public void tearDown() throws InterruptedException {
       //  SeleniumUtils.takeScreenshot("failure.png");
         Driver.quitDriver();
     }
