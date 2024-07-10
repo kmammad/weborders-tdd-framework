@@ -35,13 +35,20 @@ public class AllProductsTests extends TestBase {
 
     @Test
     public void verifyProductNames() {
+
+        logger.info("Navigate to homepage");
         Driver.getDriver().get(FrameworkConstants.HOMEPAGE_URL);
+
+        logger.info("Enter credentials");
         new LoginPage().login();
 
-        new HomePage().clickOnLink("View all products");
+        logger.info("Click on products link");
+        new HomePage().clickOnLink("View all products----");
 
+        logger.info("Extract product names");
         List<String> actualFirstColumnText = new AllProductsPage().extractFirstColumnText();
 
+        logger.info("Verify the product names");
         Assert.assertEquals(actualFirstColumnText, List.of("MyMoney", "FamilyAlbum", "ScreenSaver"));
     }
 }

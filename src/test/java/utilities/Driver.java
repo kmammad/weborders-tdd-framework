@@ -24,12 +24,12 @@ public class Driver {
     public static WebDriver getDriver(){
         if (driver == null) {
 
-            String browserType = System.getProperty("browser").toLowerCase();
+            String browserType = System.getProperty("browser");
             if (browserType == null) {
-                browserType = ConfigReader.getProperty("browser").toLowerCase();
+                browserType = ConfigReader.getProperty("browser");
             }
 
-            switch (browserType) {
+            switch (browserType.toLowerCase()) {
                 case "chrome" -> driver = new ChromeDriver();
                 case "firefox" -> driver = new FirefoxDriver();
                 case "edge" -> driver = new EdgeDriver();

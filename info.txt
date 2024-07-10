@@ -18,12 +18,14 @@ TDD Framework Building Steps:
    #git rm -r --cached <folder or file name> to remove unwanted folder or files retroactively
 4. Create the package structure (pages - page object model classes/repositories)
 5. Add your test cases following the Page Object Model.
-6. Add an xml files for running tests (regression, smoke)
+6. Add xml files for running tests (regression, smoke)
 7. Add and configure the Base class (framework test base class), inc config property file
 8. Add properties file and ConfigReader Utility class to read from the file
 9. Add other utilities(Driver, SeleniumUtils, CSVReader)
-10. Add headless browser support
-11. Add cross browser testing support by adding an option to pass browser from command line - adjust Driver class code
+10. Add support for command line run of the tests by configuring maven surefire plugin in pom.xml
+11. Add headless browser support
+12. Add cross browser testing support by adding an option to pass browser from command line - adjust Driver class code
+13. Add Extent Reports for pretty
 
 
 TDD TestNG Framework components (tools used):
