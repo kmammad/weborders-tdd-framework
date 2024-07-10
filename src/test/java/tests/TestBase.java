@@ -68,10 +68,10 @@ public class TestBase {
             logger.pass("TEST PASSED: " + testResult.getName());
 
         } else if (testResult.getStatus() == ITestResult.SKIP) {
-            logger.fail("TEST SKIPPED: " + testResult.getName());
+            logger.skip("TEST SKIPPED: " + testResult.getName());
 
         } else if (testResult.getStatus() == ITestResult.FAILURE) {
-            logger.skip("TEST FAILED: " + testResult.getName());
+            logger.fail("TEST FAILED: " + testResult.getName());
             logger.fail(testResult.getThrowable());
             //take a screenshot
             String pathOfScreenshotFile = SeleniumUtils.getScreenshot("failed");
