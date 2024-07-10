@@ -85,7 +85,33 @@ Using Branch Based workflow for Test Automation Framework Code Collaboration:
     the main branch code.
 12. Repetition of Steps: Steps 5-11 are repeated for every task.
 
+Git Merge Conflict = it is a conflict when a change that comes from one branch is incompatible with the change that
+already exists in the current branch
 
+Example merge conflict:
+
+<<<<<<<<<< sprint03
+browser=safari
+
+=============
+browser=edge
+>>>>>>>>> main
+
+To resolve: choose the change that you want to keep and commit the change in GitHUb.
+
+<<<<<<<<<< sprint03 // remove this line
+browser=safari      // decide which version to keep
+
+=============      // remove this line
+browser=edge       // decide which version to keep
+>>>>>>>>> main     // remove this line
+
+How to avoid merge conflicts?
+1. Always pull the latest code from the Main branch before adding any new code or creating a new branch.
+2. Limit working on the common files such as TestBase, .properties etc. Create your own test class for your test code
+3. Structure code in multiple, smaller files rather than large ones.
+4. Keep merge requests small and specific, minimizing code changes to a particular change.
+5. Merge as soon as possible, with regular review/approval cycles to avoid delays.
 
 
 
