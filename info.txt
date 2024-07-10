@@ -25,7 +25,7 @@ TDD Framework Building Steps:
 10. Add support for command line run of the tests by configuring maven surefire plugin in pom.xml
 11. Add headless browser support
 12. Add cross browser testing support by adding an option to pass browser from command line - adjust Driver class code
-13. Add Extent Reports for pretty
+13. Add Extent Reports for pretty html reports
 
 
 TDD TestNG Framework components (tools used):
@@ -44,6 +44,7 @@ TDD TestNG Framework components (tools used):
 13) Framework Base Class -> to store common setup and teardown operations(methods) for all test cases
 14) Lombok dependency with annotations @Data, @AllArgsConstructor, @NoArgsConstructor, generates boilerplate code
 (toString, getter/setter, hashcode and equals) for our page classes
+15) Extent Report -> generate a detailed html report for stakeholders
 
 Design Pattern used in this Framework:
 1) Singleton -> design pattern applied to Driver class to ensure single WebDriver instance during test execution.
