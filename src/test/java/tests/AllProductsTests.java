@@ -43,7 +43,7 @@ public class AllProductsTests extends TestBase {
         new LoginPage().login();
 
         logger.info("Click on products link");
-        new HomePage().clickOnLink("View all products----");
+        new HomePage().clickOnLink("View all products");
 
         logger.info("Extract product names");
         List<String> actualFirstColumnText = new AllProductsPage().extractFirstColumnText();
