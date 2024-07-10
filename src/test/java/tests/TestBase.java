@@ -63,7 +63,6 @@ public class TestBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult testResult) {
-        //  SeleniumUtils.takeScreenshot("failure.png");
 
         if (testResult.getStatus() == ITestResult.SUCCESS) {
             logger.pass("TEST PASSED: " + testResult.getName());
@@ -74,6 +73,9 @@ public class TestBase {
         } else if (testResult.getStatus() == ITestResult.FAILURE) {
             logger.skip("TEST FAILED: " + testResult.getName());
             logger.fail(testResult.getThrowable());
+            //take a screenshot
+            String pathOfScreenshotFile = SeleniumUtils.getScreenshot("failed");
+            logger.addScreenCaptureFromPath(pathOfScreenshotFile);
         }
 
         Driver.quitDriver();
