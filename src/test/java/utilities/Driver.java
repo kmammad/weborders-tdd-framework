@@ -21,7 +21,7 @@ public class Driver {
 
     private Driver(){}
 
-    public static WebDriver getDriver(){
+    public static synchronized WebDriver getDriver(){
         if (drivers.get() == null) {
 
             String browserType = System.getProperty("browser");
@@ -46,7 +46,7 @@ public class Driver {
         return drivers.get();
     }
 
-    public static void quitDriver(){
+    public static synchronized void quitDriver(){
         if (drivers.get() != null){
             drivers.get().quit();
             drivers.remove();
